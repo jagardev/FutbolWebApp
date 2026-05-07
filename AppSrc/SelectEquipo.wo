@@ -8,7 +8,11 @@ Use cWebMenuGroup.pkg
 Use cWebMenuItem.pkg
 Use cWebColumnButton.pkg
 Use cWebColumn.pkg
+<<<<<<< HEAD
 Use ZoomEquipo.wo
+=======
+Use SelectEquipo.wo
+>>>>>>> feature/SelectEquipo
 
 Use cligaDataDictionary.dd
 Use cequipoDataDictionary.dd
@@ -67,7 +71,11 @@ Object oSelectEquipo is a cWebView
             Set psBtnCssClass to "WebButtonIcon WebIcon_Info"
             Set peAlign to alignRight
 
+<<<<<<< HEAD
             WebRegisterPath ntNavigateForward oZoomEquipo
+=======
+            WebRegisterPath ntNavigateForward oSelectEquipo
+>>>>>>> feature/SelectEquipo
 
             Procedure OnClick
                 Send NavigatePath
@@ -123,7 +131,11 @@ Error DFERR_PROGRAM "NavigateForward to this from-parent child Select view not y
             Set psCSSClass to "WebClearMenuItem"
             Set psCaption to "New"
 
+<<<<<<< HEAD
             WebRegisterPath ntNavigateForward oZoomEquipo
+=======
+            WebRegisterPath ntNavigateForward oSelectEquipo
+>>>>>>> feature/SelectEquipo
 
             Procedure OnClick
                 Send NavigatePath

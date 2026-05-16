@@ -1,4 +1,4 @@
-﻿// C:\DataFlex Projects\FutbolWebApp\AppSrc\ZoomJugador.wo
+// C:\DataFlex Projects\FutbolWebApp\AppSrc\ZoomJugador.wo
 // ZoomJugador
 //
 
@@ -7,6 +7,10 @@ Use cWebPanel.pkg
 Use cWebMenuGroup.pkg
 Use cWebMenuItem.pkg
 Use cWebForm.pkg
+Use cWebButton.pkg
+
+Use ZoomPosicion.wo
+Use SelectEquipo.wo
 
 Use cligaDataDictionary.dd
 Use cequipoDataDictionary.dd
@@ -80,13 +84,34 @@ Object oZoomJugador is a cWebView
             Set psLabel to "EquipoID"
             Set pbPromptButton to True
 
-// ToDo: Fill in the from-child parent Select view object name for navigate forward
-//            WebRegisterPath ntNavigateForward oSelectView
+            WebRegisterPath ntNavigateForward oSelectEquipo
 
             Procedure OnPrompt
                 Send NavigatePath
             End_Procedure
         End_Object 
+
+        Object oBtnVerPosicion is a cWebButton
+            Set psCaption to "Ver Posicion"
+            Set piColumnSpan to 4
+            Set piColumnIndex to 0
+            
+            WebRegisterPath ntNavigateForwardCustom oZoomPosicion
+            
+            Procedure OnClick
+                Send NavigatePath
+            End_Procedure
+            
+            Procedure OnGetNavigateForwardData tWebNavigateData ByRef NavigateData Handle hoToView
+                // Respuesta a la pregunta teorica: Undefined->Zoom jugador-Select posicion: Hay relacion entre ellas?
+                // A nivel de Data Dictionaries (DD), no existe una relacion padre-hijo (1:N) directa entre Jugador y Posicion 
+                // que permita una navegacion estandar automatica. La relacion real es M:N a traves de la tabla 'jugadorposicion'.
+                // Por eso implementamos una navegacion Custom/Undefined hacia la vista individual (ZoomPosicion) 
+                // y pasamos manualmente el ID de la posicion usando NamedValues para que la vista destino cargue el registro.
+                Move nfUndefined to NavigateData.eNavigateType
+                Get NamedValueAdd NavigateData.NamedValues "PosicionID" "1" to NavigateData.NamedValues // Valor de ejemplo
+            End_Procedure
+        End_Object
     End_Object 
 
     Object oActionGroup is a cWebMenuGroup

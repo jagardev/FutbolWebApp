@@ -1,4 +1,4 @@
-﻿// C:\DataFlex Projects\FutbolWebApp\AppSrc\ZoomPosicion.wo
+// C:\DataFlex Projects\FutbolWebApp\AppSrc\ZoomPosicion.wo
 // ZoomPosicion
 //
 
@@ -127,6 +127,8 @@ Object oZoomPosicion is a cWebView
     End_Procedure
 
     Procedure OnNavigateForward tWebNavigateData NavigateData Integer hoInvokingView Integer hoInvokingObject
+        String sPosicionID
+
         Case Begin
             Case (NavigateData.eNavigateType = nfFromMain)
                 // If from main, this is a propbably a main file Select to Zoom.
@@ -141,6 +143,12 @@ Object oZoomPosicion is a cWebView
                 Case Break
 
             Case Else // must be nfUndefined
+                Get NamedValueGet NavigateData.NamedValues "PosicionID" to sPosicionID
+                If (sPosicionID <> "") Begin
+                    Send Clear of oposicion_DD
+                    Move sPosicionID to posicion.ID
+                    Send Find of oposicion_DD EQ 1
+                End
 
         Case End
 

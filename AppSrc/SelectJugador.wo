@@ -1,4 +1,4 @@
-﻿// C:\DataFlex Projects\FutbolWebApp\AppSrc\SelectJugador.wo
+// C:\DataFlex Projects\FutbolWebApp\AppSrc\SelectJugador.wo
 // SelectJugador
 //
 
@@ -44,6 +44,8 @@ Object oSelectJugador is a cWebView
         Set pbFillHeight to True
         Set pbShowHeader to False
         Set piSortColumn to 0
+
+        WebRegisterPath ntNavigateForward oZoomJugador
 
         Object ojugadorID is a cWebColumn
             Entry_Item jugador.ID
@@ -101,9 +103,7 @@ Object oSelectJugador is a cWebView
 
             Case Begin
                 Case (NavigateData.eNavigateType = nfFromParent)
-// ToDo: Fill in the from-parent child Select view object name for navigate forward
-Error DFERR_PROGRAM "NavigateForward to this from-parent child Select view not yet defined"
-//                    Send NavigateForward of oSelectView Self
+                    Send NavigateForward of oZoomJugador Self
                     Case Break
 
                 Case (NavigateData.eNavigateType = nfFromChild)
@@ -115,9 +115,12 @@ Error DFERR_PROGRAM "NavigateForward to this from-parent child Select view not y
                     Case Break
 
                 Case Else // must be nfUndefined
-// ToDo: Fill in the from-parent child Select view object name for navigate forward
-Error DFERR_PROGRAM "NavigateForward to this from-parent child Select view not yet defined"
-//                    Send NavigateForward of oSelectView Self
+                    // Respuesta a la pregunta teorica: From main->Select-Zoom, que pasa con InvokingObject?
+                    // Al navegar desde el main (Select) hacia un Zoom usando NavigateForward, pasamos 'Self' (el cWebList) 
+                    // como InvokingObject. El framework guarda este objeto en la propiedad phoInvokingObject del Zoom destino.
+                    // Gracias a esto, cuando se hace un NavigateClose/NavigateBack desde el Zoom, el sistema sabe 
+                    // exactamente a que vista y a que control debe devolver el foco y sincronizar el registro activo.
+                    Send NavigateForward of oZoomJugador Self
 
             Case End
         End_Procedure

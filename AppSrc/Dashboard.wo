@@ -1,4 +1,4 @@
-﻿Use cWebView.pkg
+Use cWebView.pkg
 Use cWebPanel.pkg
 Use cWebForm.pkg
 Use cWebButton.pkg
@@ -73,10 +73,15 @@ Object oDashboard is a cWebView
                 Set psCSSClass to "Tile LightAlternate"
                 Set psHtml to '<div class="WebCon_Sizer" data-ServerOnClick="openview"><div Class="Tile_Title">Entrenadores</div><div class="Tile_Subtitle"></div></div>'
                 
-                WebRegisterPath ntNavigateForward oSelectEntrenador
+                // Navegación Custom (Undefined) desde el Dashboard
+                WebRegisterPath ntNavigateForwardCustom oSelectEntrenador
                 
                 Procedure OnClick String sId String sParam
-                    Send NavigateForward of oSelectEntrenador Self
+                    Send NavigatePath
+                End_Procedure
+
+                Procedure OnGetNavigateForwardData tWebNavigateData ByRef NavigateData Handle hoToView
+                    Move nfUndefined to NavigateData.eNavigateType
                 End_Procedure
             End_Object
 
@@ -87,10 +92,15 @@ Object oDashboard is a cWebView
                 Set psCSSClass to "Tile Dark"
                 Set psHtml to '<div class="WebCon_Sizer" data-ServerOnClick="openview"><div Class="Tile_Title">Jugadores</div><div class="Tile_Subtitle"></div></div>'
                 
-                WebRegisterPath ntNavigateForward oSelectJugador
+                // Navegación Custom (Undefined) desde el Dashboard
+                WebRegisterPath ntNavigateForwardCustom oSelectJugador
                 
                 Procedure OnClick String sId String sParam
-                    Send NavigateForward of oSelectJugador Self
+                    Send NavigatePath
+                End_Procedure
+
+                Procedure OnGetNavigateForwardData tWebNavigateData ByRef NavigateData Handle hoToView
+                    Move nfUndefined to NavigateData.eNavigateType
                 End_Procedure
             End_Object
 
@@ -102,10 +112,15 @@ Object oDashboard is a cWebView
                 Set psCSSClass to "Tile DarkAlternate"
                 Set psHtml to '<div class="WebCon_Sizer" data-ServerOnClick="openview"><div Class="Tile_Title">Equipos</div><div class="Tile_Subtitle"></div></div>'
                 
-                WebRegisterPath ntNavigateForward oSelectEquipo
+                // Navegación Custom (Undefined) desde el Dashboard
+                WebRegisterPath ntNavigateForwardCustom oSelectEquipo
                 
                 Procedure OnClick String sId String sParam
-                    Send NavigateForward of oSelectEquipo Self
+                    Send NavigatePath
+                End_Procedure
+
+                Procedure OnGetNavigateForwardData tWebNavigateData ByRef NavigateData Handle hoToView
+                    Move nfUndefined to NavigateData.eNavigateType
                 End_Procedure
             End_Object
 
@@ -116,10 +131,15 @@ Object oDashboard is a cWebView
                 Set psCSSClass to "Tile Light"
                 Set psHtml to '<div class="WebCon_Sizer" data-ServerOnClick="openview"><div Class="Tile_Title">Ligas</div><div class="Tile_Subtitle"></div></div>'
                 
-                WebRegisterPath ntNavigateForward oSelectLiga
+                // Navegación Custom (Undefined) desde el Dashboard
+                WebRegisterPath ntNavigateForwardCustom oSelectLiga
                 
                 Procedure OnClick String sId String sParam
-                    Send NavigateForward of oSelectLiga Self
+                    Send NavigatePath
+                End_Procedure
+
+                Procedure OnGetNavigateForwardData tWebNavigateData ByRef NavigateData Handle hoToView
+                    Move nfUndefined to NavigateData.eNavigateType
                 End_Procedure
             End_Object
 
@@ -131,10 +151,15 @@ Object oDashboard is a cWebView
                 Set psCSSClass to "Tile LightAlternate"
                 Set psHtml to '<div class="WebCon_Sizer" data-ServerOnClick="openview"><div Class="Tile_Title">Posiciones</div><div class="Tile_Subtitle"></div></div>'
                 
-                WebRegisterPath ntNavigateForward oSelectPosicion
+                // Navegación Custom (Undefined) desde el Dashboard
+                WebRegisterPath ntNavigateForwardCustom oSelectPosicion
                 
                 Procedure OnClick String sId String sParam
-                    Send NavigateForward of oSelectPosicion Self
+                    Send NavigatePath
+                End_Procedure
+
+                Procedure OnGetNavigateForwardData tWebNavigateData ByRef NavigateData Handle hoToView
+                    Move nfUndefined to NavigateData.eNavigateType
                 End_Procedure
             End_Object
         End_Object

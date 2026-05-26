@@ -1,4 +1,4 @@
-﻿// C:\DataFlex Projects\FutbolWebApp\AppSrc\ZoomEntrenador.wo
+// C:\DataFlex Projects\FutbolWebApp\AppSrc\ZoomEntrenador.wo
 // ZoomEntrenador
 //
 
@@ -11,6 +11,8 @@ Use cWebForm.pkg
 Use cligaDataDictionary.dd
 Use cequipoDataDictionary.dd
 Use centrenadorDataDictionary.dd
+
+Use SelectEquipo.wo
 
 Object oZoomEntrenador is a cWebView
     Set piColumnCount to 12
@@ -80,8 +82,9 @@ Object oZoomEntrenador is a cWebView
             Set psLabel to "EquipoID"
             Set pbPromptButton to True
 
-// ToDo: Fill in the from-child parent Select view object name for navigate forward
-//            WebRegisterPath ntNavigateForward oSelectView
+            // Navegación from-child (hijo a padre): Permite buscar y seleccionar un registro padre (Equipo) 
+            // desde la vista detalle del hijo (Entrenador). Al seleccionar el equipo, este se relaciona con el entrenador.
+            WebRegisterPath ntNavigateForward oSelectEquipo
 
             Procedure OnPrompt
                 Send NavigatePath
